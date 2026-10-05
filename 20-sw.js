@@ -1,0 +1,4 @@
+const V='hakis-muv4t3lf';const FILES=["./","app.js","chunk-6JDEK4MB.js","chunk-D3OACXFR.js","chunk-EGIHMFNZ.js","chunk-IS7QG754.js","chunk-NRZKMBCB.js","chunk-PDEFEDFO.js","chunk-PEIULFWZ.js","chunk-SQE76S5B.js","chunk-XPYRJNUM.js","chunk-XZG2HCDA.js","icon-180.png","icon-192.png","icon-512.png","icon.svg","index.html","manifest.webmanifest","style.css"];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request,{ignoreSearch:true}).then(r=>r||fetch(e.request)))});
